@@ -1,15 +1,17 @@
 // ==UserScript==
-// @name         LINE Chat
-// @namespace    http://tampermonkey.net/
+// @name         LINE Chat Style
+// @namespace    https://github.com/hirohiro716/
 // @version      0.1
-// @description  try to take over the world!
-// @author       You
+// @description  Fix LINE Chat styles.
+// @author       hiro
 // @match        https://account.line.biz/*
 // @match        https://access.line.me/*
 // @match        https://chat.line.biz/*
 // @icon         https://vos.line-scdn.net/line-oa-crm-pc/img/favicon.ico
 // @require https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js
 // @grant        none
+// @updateURL    https://github.com/hirohiro716/line-chat-style/raw/main/line-chat-style.user.js
+// @downloadURL  https://github.com/hirohiro716/line-chat-style/raw/main/line-chat-style.user.js
 // ==/UserScript==
 
 let sleep = ms => new Promise(res => setTimeout(res, ms))
