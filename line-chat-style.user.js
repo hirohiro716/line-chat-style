@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LINE Chat Style
 // @namespace    https://github.com/hirohiro716/
-// @version      0.1
+// @version      0.2
 // @description  Fix LINE Chat styles.
 // @author       hiro
 // @match        https://account.line.biz/*
@@ -14,31 +14,33 @@
 // @downloadURL  https://github.com/hirohiro716/line-chat-style/raw/main/line-chat-style.user.js
 // ==/UserScript==
 
-let sleep = ms => new Promise(res => setTimeout(res, ms))
-let $ = window.jQuery;
-
 let fixTitle = function() {
-    let unreadCount;
-    if ($('div.badge-pill').length == 1) {
-        unreadCount = $('div.badge-pill').text();
+    let unreadCount = "";
+    let menu = document.querySelector("#menu");
+    if (menu !== null) {
+        let badge = menu.querySelector("div.badge-pill");
+        if (badge !== null) {
+            unreadCount = "(" + badge.textContent.trim() + ")";
+        }
     }
-    let title = 'LINE';
-    if (unreadCount) {
-        title = title + ' (' + unreadCount.trim() + ')';
-    }
-    $('title').text(title);
+    document.querySelector("title").textContent = "LINE" + unreadCount;
 };
 setInterval(fixTitle, 10);
 
 let fixStyle = function() {
-    $('#page').css('min-width', '600px');
-    $('#header').css('min-width', '0');
-    $('#container').css('min-width', '0');
-    $('.btn-collapse-panel').css('opacity', '0.7');
-    $('div[role="alert"]').css('display', 'none');
-    $('#content-wrapper').css('overflow', 'hidden');
-    $('#editable-unit').css('min-height', '200px');
-    $('#editable-unit').find('> div').css('height', '100%');
-    $('.editable-unit-top').css('display', 'none');
+    let containers = document.querySelectorAll("#container, #header");
+    containers.forEach((element) => {
+        element.style.minWidth = "0";
+    });
+    let contentWrapper = document.querySelector("#content-wrapper");
+    if (contentWrapper !== null) {
+        contentWrapper.style.overflowX = "hidden";
+    }
+    let editor = document.querySelector("#editor");
+    if (editor !== null) {
+        editor.shadowRoot.querySelector("textarea").style.width = "100%";
+        editor.shadowRoot.querySelector("textarea").style.height = "100%";
+    }
 };
 setInterval(fixStyle, 1000);
+
