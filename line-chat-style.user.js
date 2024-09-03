@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LINE Chat Style
 // @namespace    https://github.com/hirohiro716/
-// @version      0.2
+// @version      0.3
 // @description  Fix LINE Chat styles.
 // @author       hiro
 // @match        https://account.line.biz/*
@@ -20,7 +20,7 @@ let fixTitle = function() {
     if (menu !== null) {
         let badge = menu.querySelector("div.badge-pill");
         if (badge !== null) {
-            unreadCount = "(" + badge.textContent.trim() + ")";
+            unreadCount = " (" + badge.textContent.trim() + ")";
         }
     }
     document.querySelector("title").textContent = "LINE" + unreadCount;
