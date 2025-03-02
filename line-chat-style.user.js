@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LINE Chat Style
 // @namespace    https://github.com/hirohiro716/
-// @version      0.3
+// @version      0.4
 // @description  Fix LINE Chat styles.
 // @author       hiro
 // @match        https://account.line.biz/*
@@ -32,10 +32,6 @@ let fixStyle = function() {
     containers.forEach((element) => {
         element.style.minWidth = "0";
     });
-    let contentWrapper = document.querySelector("#content-wrapper");
-    if (contentWrapper !== null) {
-        contentWrapper.style.overflowX = "hidden";
-    }
     let editor = document.querySelector("#editor");
     if (editor !== null) {
         editor.shadowRoot.querySelector("textarea").style.width = "100%";
