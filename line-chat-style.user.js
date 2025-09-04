@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LINE Chat Style
 // @namespace    https://github.com/hirohiro716/
-// @version      0.4
+// @version      0.5
 // @description  Fix LINE Chat styles.
 // @author       hiro
 // @match        https://account.line.biz/*
@@ -31,6 +31,14 @@ let fixStyle = function() {
     let containers = document.querySelectorAll("#container, #header");
     containers.forEach((element) => {
         element.style.minWidth = "0";
+    });
+    let list = document.querySelector("#content-primary");
+    if (list !== null) {
+        list.style.minWidth = "300px";
+    }
+    let userDescriptions = document.querySelectorAll(".hide-on-collapse");
+    userDescriptions.forEach((element) => {
+        element.classList.remove("hide-on-collapse");
     });
     let editor = document.querySelector("#editor");
     if (editor !== null) {
