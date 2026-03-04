@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LINE Chat Style
 // @namespace    https://github.com/hirohiro716/
-// @version      0.6
+// @version      1.0
 // @description  Fix LINE Chat styles.
 // @author       hiro
 // @match        https://account.line.biz/*
@@ -36,6 +36,12 @@ let fixStyle = function() {
     if (purchaseButton !== null) {
         purchaseButton.style.display = "none";
     }
+    let headerADs = document.querySelectorAll("a.badge");
+    for (const headerAD of headerADs) {
+        if (headerAD.textContent.includes("アップグレード")) {
+            headerAD.style.display = "none";
+        }
+    }
     let helpButton = document.querySelector("#header-menu-help");
     if (helpButton !== null) {
         helpButton.style.display = "none";
@@ -55,4 +61,3 @@ let fixStyle = function() {
     }
 };
 setInterval(fixStyle, 1000);
-
