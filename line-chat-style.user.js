@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LINE Chat Style
 // @namespace    https://github.com/hirohiro716/
-// @version      1.0
+// @version      1.1.0
 // @description  Fix LINE Chat styles.
 // @author       hiro
 // @match        https://account.line.biz/*
@@ -15,10 +15,10 @@
 // ==/UserScript==
 
 let fixTitle = function() {
-    let unreadCount = "";
-    let menu = document.querySelector("#menu");
+    const unreadCount = "";
+    const menu = document.querySelector("#menu");
     if (menu !== null) {
-        let badge = menu.querySelector("div.badge-pill");
+        const badge = menu.querySelector("div.badge-pill");
         if (badge !== null) {
             unreadCount = " (" + badge.textContent.trim() + ")";
         }
@@ -28,33 +28,39 @@ let fixTitle = function() {
 setInterval(fixTitle, 10);
 
 let fixStyle = function() {
-    let containers = document.querySelectorAll("#container, #header");
+    const containers = document.querySelectorAll("#container, #header");
     containers.forEach((element) => {
         element.style.minWidth = "0";
     });
-    let purchaseButton = document.querySelector("a[href*='purchase']");
+    const purchaseButton = document.querySelector("a[href*='purchase']");
     if (purchaseButton !== null) {
         purchaseButton.style.display = "none";
     }
-    let headerADs = document.querySelectorAll("a.badge");
+    const headerADs = document.querySelectorAll("a.badge");
     for (const headerAD of headerADs) {
         if (headerAD.textContent.includes("アップグレード")) {
             headerAD.style.display = "none";
         }
     }
-    let helpButton = document.querySelector("#header-menu-help");
+    const helpButton = document.querySelector("#header-menu-help");
     if (helpButton !== null) {
         helpButton.style.display = "none";
     }
-    let list = document.querySelector("#content-primary");
+    const outlineInfoButtons = document.querySelectorAll("a.btn-outline-info");
+    outlineInfoButtons.forEach((element) => {
+        if (element.textContent === "要対応" || element.textContent === "対応済み") {
+            element.style.display = "none";
+        }
+    });
+    const list = document.querySelector("#content-primary");
     if (list !== null) {
         list.style.minWidth = "300px";
     }
-    let userDescriptions = document.querySelectorAll(".hide-on-collapse");
+    const userDescriptions = document.querySelectorAll(".hide-on-collapse");
     userDescriptions.forEach((element) => {
         element.classList.remove("hide-on-collapse");
     });
-    let editor = document.querySelector("#editor");
+    const editor = document.querySelector("#editor");
     if (editor !== null) {
         editor.shadowRoot.querySelector("textarea").style.width = "100%";
         editor.shadowRoot.querySelector("textarea").style.height = "100%";
